@@ -11,6 +11,7 @@ const pod = document.querySelector('#pod');
 const clear_pod = document.querySelector('#clear-pod');
 const sentence_pod = document.querySelector('.sentence-pod');
 
+// Handle removal of pod items
 pod.addEventListener('click', (e) => {
     clicked_element = e.target.parentElement;
     console.log(clicked_element);
@@ -22,21 +23,25 @@ pod.addEventListener('click', (e) => {
     }
 });
 
+// handle pod clear button action
 clear_pod.addEventListener('click', (e) => {
     pod.innerHTML = '';
     // add hide to parent element
     sentence_pod.classList.add('hide');
 });
 
+// register addition of issue list items to the pod
 issues_list.addEventListener('click', (e) => {
-    // get child element text
     actions(e);
 });
+
+// register addition of action list items to the pod
 actions_list.addEventListener('click', (e) => {
-    // get child element text
     actions(e);
 });
-  function actions(e){
+
+// handle issue and action list item addition to the pod
+function actions(e){
     const clicked_element = e.target;
     // check if sentece_pod has class hide
 
@@ -65,8 +70,7 @@ actions_list.addEventListener('click', (e) => {
 
   }
 
-
-
+// Handle fetching of data from the server
 async function postData(url = '', data = {}, method = 'POST') {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -85,19 +89,15 @@ async function postData(url = '', data = {}, method = 'POST') {
     return response.json(); // parses JSON response into native JavaScript objects
   }
 
-
-submit.addEventListener('click', (e) => {
-
-    
+// handle form submission
+submit.addEventListener('click', (e) => { 
    e.preventDefault(); 
-    // Example POST method implementation:
   const data = {title: sentence.value, category: category.value};
   postData("http://127.0.0.1:5000/sentences", data, 'POST')
     .then(data => {
         console.log(data);
+        load();
     });
-
-
 });
 
 function load(){
