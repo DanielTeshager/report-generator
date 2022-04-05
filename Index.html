@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Document</title>
+</head>
+<body onload="load()">
+    <main class="container">
+        <div class="user-form">
+            <h2>Add categories</h2>
+            <form method="POST">
+                <div class="input-fields">
+                    <div class="form-control">
+                        <input type="text" name="sentence" id="sentence" placeholder="Enter sentence">
+                    </div>
+                    <div class="form-control">
+                        <select name="category" id="category">
+                            <option value="">Select category</option>
+                            <option value="Action">Action</option>
+                            <option value="Issue">Issue</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" id="submit" name="submit">Create</button>
+            </form>
+        </div>
+        <div class="sentence-pod hide">
+            <div id="pod">
+
+            </div>
+            <button id="clear-pod">Clear</button>
+        </div>
+        <div class="categories">
+            <div class="actions box">
+                <h2>Actions
+                    <i class="fa fa-bolt" aria-hidden="true"></i>
+                </h2>
+                <ul class="actions-list">
+
+                </ul>
+            </div>
+            <div class="issues box">
+                <h2>Issues
+                    <i class="fas fa-bullhorn"></i>
+                </h2>
+                <ul class="issues-list">
+
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+<!-- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, possimus! -->
