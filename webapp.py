@@ -7,7 +7,7 @@ from models import setup_db, Sentence
 
 app = Flask(__name__)
 #CORS allow origin from www.leadyaa.com only
-CORS(app, resources={r"*": {"origins": "https://reportgeneratorpythonapp.herokuapp.com/"}})
+CORS(app, resources={r"*": {"origins": "https://endearing-cendol-1d8350.netlify.app"}})
 setup_db(app)
 
 @app.after_request
