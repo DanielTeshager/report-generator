@@ -8,7 +8,7 @@ def create_app():
     app = Flask(__name__)
     setup_db(app)
     CORS(app)
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app, resources={r"*": {"origins": "*"}})
 #    CORS Headers
 
     @app.after_request
