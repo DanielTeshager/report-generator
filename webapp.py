@@ -23,7 +23,7 @@ def after_request(response):
     return response
 @app.route("/")
 @flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
-def get_Sentences():
+def index():
     Sentences = Sentence.query.order_by(Sentence.id).all()
     total_Sentences = len(Sentences)
     if not Sentences:
