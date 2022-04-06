@@ -4,11 +4,11 @@ from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
 from models import setup_db, Sentence
 
+
 app = Flask(__name__)
+#CORS allow origin from www.leadyaa.com only
+CORS(app, resources={r"*": {"origins": "https://reportgeneratorpythonapp.herokuapp.com/"}})
 setup_db(app)
-CORS(app)
-CORS(app, resources={r"*": {"origins": "*"}})
-#CORS Headers
 
 @app.after_request
 def after_request(response):
