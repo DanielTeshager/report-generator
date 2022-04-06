@@ -2,6 +2,7 @@ from unicodedata import category
 from flask import Flask, request, abort, jsonify
 # from flask_sqlalchemy import SQLAlchemy  # , or_
 from flask_cors import CORS
+import flask_cors
 from models import setup_db, Sentence
 
 
@@ -11,6 +12,7 @@ app = Flask(__name__)
 setup_db(app)
 
 @app.after_request
+@flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def after_request(response):
     response.headers.add(
         "Access-Control-Allow-Headers", "Content-Type,Authorization,true"
@@ -21,6 +23,7 @@ def after_request(response):
     return response
 
 @app.route("/sentences")
+@flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def get_Sentences():
     Sentences = Sentence.query.order_by(Sentence.id).all()
     total_Sentences = len(Sentences)
@@ -35,6 +38,7 @@ def get_Sentences():
     })
 
 @app.route("/sentences/<int:sentence_id>", methods=["PATCH","GET"])
+@flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def update_Sentence(sentence_id):
     body = request.get_json()
     sentence = Sentence.query.get(sentence_id)
@@ -55,6 +59,7 @@ def update_Sentence(sentence_id):
         })
 
 @app.route("/sentences/<int:sentence_id>", methods=["DELETE"])
+@flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def delete_Sentence(sentence_id):
     sentence = Sentence.query.get(sentence_id)
     if sentence is None:
@@ -67,6 +72,7 @@ def delete_Sentence(sentence_id):
 
 
 @app.route("/sentences", methods=["POST"])
+@flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def create_Sentence():
     body = request.get_json()
     print('body', body)
@@ -90,6 +96,7 @@ def create_Sentence():
     })
 
 @app.route('/sentences/search', methods=['POST'])
+@flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def search_sentences():
     body = request.get_json()
     if body is None:
