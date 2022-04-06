@@ -21,7 +21,20 @@ def after_request(response):
         "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS"
     )
     return response
+@app.route("/")
+@flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+def get_Sentences():
+    Sentences = Sentence.query.order_by(Sentence.id).all()
+    total_Sentences = len(Sentences)
+    if not Sentences:
+        abort(404)
+    Sentences = [Sentence.format() for Sentence in Sentences]
 
+    return jsonify({
+        "success": True,
+        "Sentences": Sentences,
+        "total_Sentences": total_Sentences
+    })
 @app.route("/sentences")
 @flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def get_Sentences():
