@@ -93,7 +93,7 @@ async function postData(url = '', data = {}, method = 'POST') {
 submit.addEventListener('click', (e) => { 
    e.preventDefault(); 
   const data = {title: sentence.value, category: category.value};
-  postData("http://127.0.0.1:5000/sentences", data, 'POST')
+  postData("https://reportgeneratorpythonapp.herokuapp.com/", data, 'POST')
     .then(data => {
         console.log(data);
         load();
@@ -101,7 +101,7 @@ submit.addEventListener('click', (e) => {
 });
 
 function load(){
-    postData('http://127.0.0.1:5000/sentences', '', 'GET')
+    postData('https://reportgeneratorpythonapp.herokuapp.com/', '', 'GET')
     .then(data => {
     //   filter category
         populate(data);
