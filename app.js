@@ -93,7 +93,7 @@ async function postData(url = '', data = {}, method = 'POST') {
 submit.addEventListener('click', (e) => { 
    e.preventDefault(); 
   const data = {title: sentence.value, category: category.value};
-  postData("https://reportgeneratorpythonapp.herokuapp.com/", data, 'POST')
+  postData("https://reportgeneratorpythonapp.herokuapp.com/sentences", data, 'POST')
     .then(data => {
         console.log(data);
         load();
