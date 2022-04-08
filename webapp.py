@@ -1,5 +1,5 @@
 from unicodedata import category
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort, jsonify, render_template
 # from flask_sqlalchemy import SQLAlchemy  # , or_
 from flask_cors import CORS
 import flask_cors
@@ -24,17 +24,8 @@ def after_request(response):
 @app.route("/")
 @flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def index():
-    Sentences = Sentence.query.order_by(Sentence.id).all()
-    total_Sentences = len(Sentences)
-    if not Sentences:
-        abort(404)
-    Sentences = [Sentence.format() for Sentence in Sentences]
-
-    return jsonify({
-        "success": True,
-        "Sentences": Sentences,
-        "total_Sentences": total_Sentences
-    })
+    # render_template("index.html")
+    return render_template("index.html");
 @app.route("/sentences")
 @flask_cors.cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def get_Sentences():
